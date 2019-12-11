@@ -1,4 +1,8 @@
 /**
+ * NOTICE OF CHANGES:
+ * This file has been modified by the Allen Institute for AI and
+ * UC Berkeley.
+ *
  * Copyright (c) 2011-2013 Fabien Cazenave, Mozilla.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -320,6 +324,7 @@ document.webL10n = (function(window, document, undefined) {
         callback();
       } else {
         console.log('no resource to load, early way out');
+        callback();
       }
       // early way out
       gReadyState = 'complete';
