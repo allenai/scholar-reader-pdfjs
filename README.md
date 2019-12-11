@@ -6,6 +6,14 @@ PDF.js is community-driven and supported by Mozilla Labs. Our goal is to
 create a general-purpose, web standards-based platform for parsing and
 rendering PDFs.
 
+## Notice of Changes
+
+This fork is maintained by the Allen Institute for AI and UC Berkeley and includes
+a number of changes.
+
+If you have questions, send us a note at
+[s2-interactive-reader@allenai.org](mailto:s2-interactive-reader@allenai.org).
+
 ## Contributing
 
 PDF.js is an open source project and always looking for more contributors. To
