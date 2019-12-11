@@ -164,7 +164,7 @@ function createWebpackConfig(defines, output) {
   output.globalObject = 'this';
 
   return {
-    mode: 'none',
+    mode: process.env.NODE_ENV === 'production' ? 'production' : 'none',
     output: output,
     performance: {
       hints: false, // Disable messages about larger file sizes.
