@@ -1,4 +1,10 @@
-/* Copyright 2012 Mozilla Foundation
+/* NOTICE OF CHANGES:
+ * This file has been modified by the Allen Institute for AI and
+ * UC Berkeley.
+ *
+ * Copyright The Allen Institute for Artificial Intelligence - All Rights Reserved.
+ *
+ * Copyright 2012 Mozilla Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

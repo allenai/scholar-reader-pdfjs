@@ -1,4 +1,8 @@
-/* Copyright 2016 Mozilla Foundation
+/* NOTICE OF CHANGES:
+ * This file has been modified by the Allen Institute for AI and
+ * UC Berkeley.
+ *
+ * Copyright 2016 Mozilla Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -797,6 +801,8 @@ gulp.task('minified-post', gulp.series('minified-pre', function (done) {
   fs.writeFileSync(MINIFIED_DIR + '/build/pdf.min.js',
                    Terser.minify(pdfFile).code);
   fs.writeFileSync(MINIFIED_DIR + '/build/pdf.worker.min.js',
+                   Terser.minify(pdfWorkerFile, optsForHugeFile).code);
+  fs.writeFileSync(MINIFIED_DIR + '/web/pdf.worker.min.js',
                    Terser.minify(pdfWorkerFile, optsForHugeFile).code);
   fs.writeFileSync(MINIFIED_DIR + 'image_decoders/pdf.image_decoders.min.js',
                    Terser.minify(pdfImageDecodersFile).code);

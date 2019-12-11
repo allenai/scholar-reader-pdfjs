@@ -1,5 +1,11 @@
 ﻿<!DOCTYPE html>
 <!--
+NOTICE OF CHANGES:
+This file has been modified by the Allen Institute for AI and
+UC Berkeley.
+
+Copyright The Allen Institute for Artificial Intelligence - All Rights Reserved
+
 Copyright 2012 Mozilla Foundation
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,7 +36,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 <!--#if GENERIC-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!--#endif-->
-    <title>PDF.js viewer</title>
+    <title>Semantic Scholar Interactive Reader</title>
 
 <!--#if FIREFOX || MOZCENTRAL-->
 <!--#include viewer-snippet-firefox-extension.html-->
@@ -39,10 +45,8 @@ See https://github.com/adobe-type-tools/cmap-resources
 <!--#include viewer-snippet-chrome-extension.html-->
 <!--#endif-->
 
+    <link rel="icon" href="images/favicon.png" sizes="32x32">
     <link rel="stylesheet" href="viewer.css">
-<!--#if !PRODUCTION-->
-    <link rel="resource" type="application/l10n" href="locale/locale.properties">
-<!--#endif-->
 
 <!--#if !PRODUCTION-->
     <script src="../node_modules/systemjs/dist/system.js"></script>
@@ -413,6 +417,8 @@ See https://github.com/adobe-type-tools/cmap-resources
       </div>  <!-- overlayContainer -->
 
     </div> <!-- outerContainer -->
+
+    <div id="scholar-reader"></div>
     <div id="printContainer"></div>
   </body>
 </html>
