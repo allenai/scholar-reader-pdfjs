@@ -35,7 +35,7 @@ const defaultOptions = {
   },
   defaultUrl: {
     /** @type {string} */
-    value: 'compressed.tracemonkey-pldi-09.pdf',
+    value: 'https://arxiv.org/pdf/1804.08199.pdf',
     kind: OptionKind.VIEWER,
   },
   defaultZoomValue: {
@@ -157,7 +157,7 @@ const defaultOptions = {
   cMapUrl: {
     /** @type {string} */
     value: (typeof PDFJSDev === 'undefined' || !PDFJSDev.test('PRODUCTION') ?
-            '../external/bcmaps/' : '../web/cmaps/'),
+      '../external/bcmaps/' : '../web/cmaps/'),
     kind: OptionKind.API,
   },
   disableAutoFetch: {
@@ -220,12 +220,12 @@ const defaultOptions = {
   workerSrc: {
     /** @type {string} */
     value: (typeof PDFJSDev === 'undefined' || !PDFJSDev.test('PRODUCTION') ?
-            '../src/worker_loader.js' : '../build/pdf.worker.js'),
+      '../src/worker_loader.js' : '../build/pdf.worker.js'),
     kind: OptionKind.WORKER,
   },
 };
 if (typeof PDFJSDev === 'undefined' ||
-    PDFJSDev.test('!PRODUCTION || (GENERIC && !LIB)')) {
+  PDFJSDev.test('!PRODUCTION || (GENERIC && !LIB)')) {
   defaultOptions.disablePreferences = {
     /** @type {boolean} */
     value: false,
@@ -274,7 +274,7 @@ class AppOptions {
           const value = defaultOption.value, valueType = typeof value;
 
           if (valueType === 'boolean' || valueType === 'string' ||
-              (valueType === 'number' && Number.isInteger(value))) {
+            (valueType === 'number' && Number.isInteger(value))) {
             options[name] = value;
             continue;
           }
@@ -283,7 +283,7 @@ class AppOptions {
       }
       const userOption = userOptions[name];
       options[name] = (userOption !== undefined ? userOption :
-                       (defaultOption.compatibility || defaultOption.value));
+        (defaultOption.compatibility || defaultOption.value));
     }
     return options;
   }
