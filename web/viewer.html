@@ -36,7 +36,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 <!--#if GENERIC-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!--#endif-->
-    <title>Semantic Scholar Interactive Reader</title>
+    <title>Semantic Reader</title>
 
 <!--#if FIREFOX || MOZCENTRAL-->
 <!--#include viewer-snippet-firefox-extension.html-->
@@ -47,6 +47,51 @@ See https://github.com/adobe-type-tools/cmap-resources
 
     <link rel="icon" href="images/favicon.png" sizes="32x32">
     <link rel="stylesheet" href="viewer.css">
+    
+    <!-- Semenatic Reader specifc -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+
+    <script type="text/javascript">
+      (window.heap = window.heap || []),
+        (heap.load = function(e, t) {
+          (window.heap.appid = e), (window.heap.config = t = t || {});
+          var r = t.forceSSL || "https:" === document.location.protocol,
+            a = document.createElement("script");
+          (a.type = "text/javascript"),
+            (a.async = !0),
+            (a.src =
+              (r ? "https:" : "http:") +
+              "//cdn.heapanalytics.com/js/heap-" +
+              e +
+              ".js");
+          var n = document.getElementsByTagName("script")[0];
+          n.parentNode.insertBefore(a, n);
+          for (
+            var o = function(e) {
+                return function() {
+                  heap.push(
+                    [e].concat(Array.prototype.slice.call(arguments, 0))
+                  );
+                };
+              },
+              p = [
+                "addEventProperties",
+                "addUserProperties",
+                "clearEventProperties",
+                "identify",
+                "removeEventProperty",
+                "setEventProperties",
+                "track",
+                "unsetEventProperty"
+              ],
+              c = 0;
+            c < p.length;
+            c++
+          )
+            heap[p[c]] = o(p[c]);
+        });
+      heap.load("3075009564");
+    </script>
 
 <!--#if !PRODUCTION-->
     <script src="../node_modules/systemjs/dist/system.js"></script>
@@ -207,7 +252,8 @@ See https://github.com/adobe-type-tools/cmap-resources
         </div>  <!-- secondaryToolbar -->
 
         <div class="toolbar">
-          <div id="readerBrandBar">Test content here</div>
+          <!-- Semenatic Reader specifc -->
+          <div id="readerBrandBar"></div>
           <div id="toolbarContainer">
             <div id="toolbarViewer">
               <div id="toolbarViewerLeft">
@@ -231,6 +277,8 @@ See https://github.com/adobe-type-tools/cmap-resources
                 <span id="numPages" class="toolbarLabel"></span>
               </div>
               <div id="toolbarViewerRight">
+                <!-- Semenatic Reader specifc -->
+                <div id="scholarReaderControls"></div>
                 <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
                   <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
                 </button>
@@ -418,7 +466,7 @@ See https://github.com/adobe-type-tools/cmap-resources
       </div>  <!-- overlayContainer -->
 
     </div> <!-- outerContainer -->
-
+    <!-- Semenatic Reader specifc -->
     <div id="scholar-reader"></div>
     <div id="printContainer"></div>
   </body>
