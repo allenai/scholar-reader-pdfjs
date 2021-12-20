@@ -207,7 +207,7 @@ html[dir='rtl'] #outerContainer.sidebarOpen #viewerContainer:not(.pdfPresentatio
   position: relative;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 1200;
   cursor: default;
 }
 

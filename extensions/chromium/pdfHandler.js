@@ -90,6 +90,48 @@ function isPdfFile(details) {
   return false;
 }
 
+const DISALLOW_URLS_ID = 'ScholarPhiDisallowedUrls'
+const DISALLOW_HOSTNAMES_ID = 'ScholarPhiDisallowedHostnames'
+
+const DISALLOW = {
+  [DISALLOW_URLS_ID]: new Set([]),
+  [DISALLOW_HOSTNAMES_ID]: new Set([]),
+}
+
+function isUrlDisallowed(url) {
+  if (!url || url.length === 0) {
+    return false
+  }
+  if (DISALLOW[DISALLOW_URLS_ID].has(url.toLowerCase())) {
+    return true
+  }
+  const hostname = new URL(url).hostname.toLowerCase()
+  if (!hostname || hostname.length <= 3) {
+    return false
+  }
+  if (DISALLOW[DISALLOW_HOSTNAMES_ID].has(hostname)) {
+    return true
+  }
+  return false
+}
+
+chrome.storage.local.get(DISALLOW_URLS_ID, (data) => {
+  console.log('INIT URL', data)
+  const newUrls = data?.[DISALLOW_URLS_ID]
+  if (newUrls) {
+    DISALLOW[DISALLOW_URLS_ID] = new Set(newUrls)
+  }
+})
+
+chrome.storage.local.get(DISALLOW_HOSTNAMES_ID, (data) => {
+  console.log('INIT Hostname', data)
+  const newHostnames = data?.[DISALLOW_HOSTNAMES_ID]
+  if (newHostnames) {
+    DISALLOW[DISALLOW_HOSTNAMES_ID] = new Set(newHostnames)
+  }
+})
+
+
 /**
  * Takes a set of headers, and set "Content-Disposition: attachment".
  * @param {Object} details First argument of the webRequest.onHeadersReceived
@@ -112,9 +154,27 @@ function getHeadersWithContentDispositionAttachment(details) {
   }
   return undefined;
 }
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area !== 'local') {
+    return
+  }
+  const newUrls = changes[DISALLOW_URLS_ID]?.newValue
+  const newHostnames = changes[DISALLOW_HOSTNAMES_ID]?.newValue
+  if (newUrls) {
+    console.log('newURLs', newUrls)
+    DISALLOW[DISALLOW_URLS_ID] = new Set(newUrls)
+  }
+  if (newHostnames) {
+    console.log('newHostnames', newHostnames)
+    DISALLOW[DISALLOW_HOSTNAMES_ID] = new Set(newHostnames)
+  }
+})
 
 chrome.webRequest.onHeadersReceived.addListener(
   function(details) {
+    if (isUrlDisallowed(details.url)) {
+      return undefined
+    }
     if (details.method !== 'GET') {
       // Don't intercept POST requests until http://crbug.com/104058 is fixed.
       return undefined;
@@ -144,6 +204,9 @@ chrome.webRequest.onHeadersReceived.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
   function(details) {
+    if (isUrlDisallowed(details.url)) {
+      return undefined
+    }
     if (isPdfDownloadable(details)) {
       return undefined;
     }
