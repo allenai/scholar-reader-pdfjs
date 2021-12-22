@@ -243,6 +243,8 @@ chrome.extension.isAllowedFileSchemeAccess(function(isAllowedAccess) {
   // API though, and we can replace the tab with the viewer.
   // The viewer will detect that it has no access to file:-URLs, and prompt the
   // user to activate file permissions.
+
+  // TODO JOSEPH this is not working - investigate or comment out
   chrome.webNavigation.onBeforeNavigate.addListener(function(details) {
     if (details.frameId === 0 && !isPdfDownloadable(details)) {
       chrome.tabs.update(details.tabId, {
@@ -261,6 +263,7 @@ chrome.extension.isAllowedFileSchemeAccess(function(isAllowedAccess) {
 });
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+
   if (message && message.action === 'getParentOrigin') {
     // getParentOrigin is used to determine whether it is safe to embed a
     // sensitive (local) file in a frame.
