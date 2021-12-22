@@ -245,21 +245,21 @@ chrome.extension.isAllowedFileSchemeAccess(function(isAllowedAccess) {
   // user to activate file permissions.
 
   // TODO JOSEPH this is not working - investigate or comment out
-  chrome.webNavigation.onBeforeNavigate.addListener(function(details) {
-    if (details.frameId === 0 && !isPdfDownloadable(details)) {
-      chrome.tabs.update(details.tabId, {
-        url: getViewerURL(details.url),
-      });
-    }
-  }, {
-    url: [{
-      urlPrefix: 'file://',
-      pathSuffix: '.pdf',
-    }, {
-      urlPrefix: 'file://',
-      pathSuffix: '.PDF',
-    }],
-  });
+  // chrome.webNavigation.onBeforeNavigate.addListener(function(details) {
+  //   if (details.frameId === 0 && !isPdfDownloadable(details)) {
+  //     chrome.tabs.update(details.tabId, {
+  //       url: getViewerURL(details.url),
+  //     });
+  //   }
+  // }, {
+  //   url: [{
+  //     urlPrefix: 'file://',
+  //     pathSuffix: '.pdf',
+  //   }, {
+  //     urlPrefix: 'file://',
+  //     pathSuffix: '.PDF',
+  //   }],
+  // });
 });
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
