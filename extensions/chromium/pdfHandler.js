@@ -18,6 +18,8 @@ limitations under the License.
 'use strict';
 
 var VIEWER_URL = chrome.extension.getURL('content/web/viewer.html');
+// var FRAME_TYPES = ['main_frame', 'sub_frame'];
+var FRAME_TYPES = ['main_frame'];
 
 function getViewerURL(pdf_url) {
   return VIEWER_URL + '?file=' + encodeURIComponent(pdf_url);
@@ -198,7 +200,7 @@ chrome.webRequest.onHeadersReceived.addListener(
     urls: [
       '<all_urls>'
     ],
-    types: ['main_frame', 'sub_frame'],
+    types: FRAME_TYPES,
   },
   ['blocking', 'responseHeaders']);
 
@@ -230,7 +232,7 @@ chrome.webRequest.onBeforeRequest.addListener(
         ]
       ),
     ],
-    types: ['main_frame', 'sub_frame'],
+    types: FRAME_TYPES,
   },
   ['blocking']);
 
